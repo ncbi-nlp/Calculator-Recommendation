@@ -1,0 +1,2 @@
+# Calculator-Recommendation
+# MedCalcQA is a medical calculator dataset used to benchmark LLMs ability to recommend clinical calculators. Each instance in the dataset consists of a truncated patient note, a question asking to recommend a specific clinical calculator, answer options (including "None of the above"), and a final answer value. Our dataset covers 35 different calculators. This dataset contains a training dataset of about 5,000 instances and a testing dataset of 1,007 instances.
