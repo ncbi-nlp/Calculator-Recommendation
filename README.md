@@ -26,3 +26,30 @@ import pandas as pd
 dataset = load_dataset("zhengyun21/PMC-Patients", split="train")
 df = dataset.to_pandas()
 ```
+
+## Calculator Note Extraction
+The first step in curating MedCalcQA is extracting evidence of calculator usage in the PMC-Patients dataset. We used GPT-4o and a list of 35 calculators that can be found on MDCalc.com to extract calculator use instances given relevant examples.
+
+## Calculator Note Truncation
+After extracting calculator instances, we truncated notes at the mention of extracted calcualtors using a fine-tuned model of GPT-4o. This fine-tuned model was provided with 72 instances of baseline notes, sentence-level evidence of calculators, and ideal truncated notes. The instances can be found in truncation_examples.csv and the OpenAI fine-tuning framework can be fed this information which is formatted with the following script:
+```python
+python truncation_examples.py
+```
+
+## Question Curation
+We then curated questions using our ground-truth calculator evidence, truncated notes, and answer options. Question-answer pairs contained the relevant truncated note and five options, include "E. None of the above". Thus, about 1/5 of all generated questions have "E. None of the above" as the correct answer. The process of question curation can be accomplished with the following script"
+```python
+python question_generation.py
+```
+
+## Question evaluation
+We then evaluated the ability of 8 LLMs to choose answer choices and recommend calculators using the curated questions. An example script for generating answers to these questions can be used as the following:
+```python
+python generate_answers.py
+```
+
+## Acknowledgements
+This work was supported by the Intramural Research Programs of the National Institutes of Health, National Library of Medicine.
+
+## Disclaimer
+This tool shows the results of research conducted in the Computational Biology Branch, NCBI/NLM. The information produced on this website is not intended for direct diagnostic use or medical decision-making without review and oversight by a clinical professional. Individuals should not change their health behavior solely on the basis of information produced on this website. NIH does not independently verify the validity or utility of the information produced by this tool. If you have questions about the information produced on this website, please see a health care professional. More information about NCBI's disclaimer policy is available.
