@@ -2,7 +2,7 @@ import pandas as pd
 import random
 
 # Load the CSV file into a DataFrame
-df = pd.read_csv("data/medcalcqa/raw_calc_notes.csv")
+df = pd.read_csv("data/medcalcqa/raw_calculator_usage.csv")
 
 # Remove rows with specific calculator codes
 codes_to_remove = ['free_water', 'bishop', 'bwps', 'etoh']
