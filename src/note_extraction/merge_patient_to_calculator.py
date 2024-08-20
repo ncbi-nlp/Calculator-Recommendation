@@ -30,4 +30,4 @@ print("Dataframe size: ", merged_df.shape)
 merged_df = pd.merge(merged_df, file3[['calculator_name', 'calculator_code']], on='calculator_code', how='left')
 
 # Save the merged data to a new CSV file
-merged_df.to_csv('data/medcalcqa/raw_calc_notes.csv', index=False)
+merged_df.to_csv('data/medcalcqa/refined_calc_notes.csv', index=False)
