@@ -178,5 +178,5 @@ for index, row in input_df.iterrows():
 output_df = pd.DataFrame(data)
 
 # Save the DataFrame to a CSV file
-output_df.to_csv('pmc_patients_calc_gpt4o.csv', index=False)
+output_df.to_csv('data/medcalcqa/pmc_patients_calc_gpt4o.csv', index=False)
 
