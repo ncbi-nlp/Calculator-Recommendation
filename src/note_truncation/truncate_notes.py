@@ -21,7 +21,7 @@ def create_user_message(row):
 
 # Read input CSV files and sample from PMC-Patients that have shown to have certain instances of specific medical calculator mentions
 project_home = os.getenv('PROJECT_HOME')
-input_path = os.path.join(project_home, 'Medical_Calculators_Structurization', 'refined_calc_notes.csv')
+input_path = os.path.join(project_home, 'data/medcalcqa/cleaned_calc_notes.csv')
 input_df = pd.read_csv(input_path)
 
 # For storing API calls that have already been completed:
@@ -95,5 +95,5 @@ for index, row in input_df.iterrows():
 # Convert the list to a DataFrame
 output_df = pd.DataFrame(data)
 # Save the DataFrame to a CSV file
-output_df.to_csv('trunc_calc_notes.csv', index=False)
+output_df.to_csv('data/medcalcqa/trunc_calc_notes.csv', index=False)
 
