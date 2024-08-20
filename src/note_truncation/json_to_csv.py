@@ -21,8 +21,8 @@ def json_to_csv(json_file_path, csv_file_path):
     df.to_csv(csv_file_path, index=False)
 
 # Define the file paths
-json_file_path = 'truncated_notes.json'
-csv_file_path = 'truncated_notes.csv' 
+json_file_path = 'src/note_truncation/truncated_notes.json'
+csv_file_path = 'src/note_truncation/truncated_notes.csv' 
 
 # Call the function to convert JSON to CSV
 json_to_csv(json_file_path, csv_file_path)
