@@ -48,15 +48,15 @@ python src/note_truncation/json_to_csv.py
 ```
 
 ## Question Curation
-We then curated questions using our ground-truth calculator evidence, truncated notes, and answer options. Question-answer pairs contained the relevant truncated note and five options, include "E. None of the above". Thus, about 1/5 of all generated questions have "E. None of the above" as the correct answer. The process of question curation can be accomplished with the following script"
+We then curated questions using our ground-truth calculator evidence, truncated notes, and answer options. Question-answer pairs contained the relevant truncated note and five options, including "E. None of the above". Thus, about 1/5 of all generated questions have "E. None of the above" as the correct answer. The process of question curation can be accomplished with the following script"
 ```python
-python question_generation.py
+python src/question_curation/question_generation.py
 ```
 
 ## Question evaluation
-We then evaluated the ability of 8 LLMs to choose answer choices and recommend calculators using the curated questions. An example script for generating answers to these questions can be used as the following:
+We then evaluated the ability of 8 LLMs to choose answer choices and recommend calculators using the curated questions. Here, we have provided an example script for generating answers using OpenAI models:
 ```python
-python generate_answers.py
+python src/question_evaluation/generate_answers.py
 ```
 
 ## Acknowledgements
