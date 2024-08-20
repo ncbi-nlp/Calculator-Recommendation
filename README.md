@@ -28,9 +28,11 @@ df = dataset.to_pandas()
 ```
 
 ## Calculator Note Extraction
-The first step in curating MedCalcQA is extracting evidence of calculator usage in the PMC-Patients dataset. We used GPT-4o and a list of 35 calculators that can be found on MDCalc.com to extract calculator use instances given relevant examples. When using this extraction script, ensure that file paths are correct such that PMC-Patients (previously loaded) and the "med_calc_table.csv" (found in Calculator-Recommendation/src/note_extraction) are properly loaded.
+The first step in curating MedCalcQA is extracting evidence of calculator usage in the PMC-Patients dataset. We used GPT-4o and a list of 35 calculators that can be found on MDCalc.com to extract calculator use instances given relevant examples. When using this extraction script, ensure that file paths are correct such that PMC-Patients (previously loaded) and the "med_calc_table.csv" (found in Calculator-Recommendation/src/note_extraction) are properly loaded. We also performed additional mergine and post-processing after extraction.
 ```python
 python src/note_extraction/med_calc_prompt_gpt4o.py
+python src/note_extraction/merge_patient_to_calculator.py
+python src/note_extraction/clean_notes.py
 ```
 
 ## Calculator Note Truncation
