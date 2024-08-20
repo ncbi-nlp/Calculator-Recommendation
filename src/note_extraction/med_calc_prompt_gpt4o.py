@@ -22,7 +22,7 @@ system = 'You are a helpful assistant for extracting medical calculator values f
 
 # List of calculators to be considered, must continue to add calculators to this table.
 system += "Identify only the calculators that are found in the following table:\n"
-calculator_table = pd.read_csv('med_calc_table.csv')
+calculator_table = pd.read_csv('src/note_extraction/med_calc_table.csv')
 codes  = calculator_table['Calculator Code'].tolist()
 table = tabulate(calculator_table, headers='keys', tablefmt='grid')
 system += table
