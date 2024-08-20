@@ -4,7 +4,7 @@
 MedCalcQA is a medical calculator dataset used to benchmark LLMs ability to recommend clinical calculators. Each instance in the dataset consists of a truncated patient note, a question asking to recommend a specific clinical calculator, answer options (including "None of the above"), and a final answer value. Our dataset covers 35 different calculators. This dataset contains a training dataset of about 5,000 instances and a testing dataset of 1,007 instances.
 
 ## Configuration
-To create one's own version of MedCalcQA, one must first set up the OpenAI API either directly through OpenAI or through Microsoft Azure. Here we use Microsoft Azure because it is compliant with Health Insurance Portability and Accountability Act (HIPAA). Please set the enviroment variables accordingly:
+To create one's own version of MedCalcQA, one must first set up the OpenAI API either directly through OpenAI or through Microsoft Azure. Here we use Microsoft Azure because it is compliant with Health Insurance Portability and Accountability Act (HIPAA). Ensure that an appropriate PROJECT_HOME path has been set, and please set the enviroment variables accordingly:
 ```python
 export OPENAI_ENDPOINT=YOUR_AZURE_OPENAI_ENDPOINT_URL
 export OPENAI_API_KEY=YOUR_AZURE_OPENAI_API_KEY
@@ -40,7 +40,7 @@ After extracting calculator instances, we truncated notes at the mention of extr
 ```python
 python src/note_truncation/truncation_fine_tuning.py
 ```
-Next, we provided our manually reviewed test_notes.csv into the fine-tuned model. Again, when using this script, ensure that file path is correct such that the "test_notes.csv" (found in Calculator-Recommendation/data/medcalcqa) is properly loaded.
+Next, we provided our cleaned_calc_notes.csv into the fine-tuned model. Again, when using this script, ensure that file path is correct such that the "cleaned_calc_notes.csv" (found in Calculator-Recommendation/data/medcalcqa) is properly loaded.
 ```python
 python src/note_truncation/truncate_notes.py
 ```
@@ -48,9 +48,15 @@ Additionally, consider using the "json_to_csv.py" script to convert JSON output 
 ```python
 python src/note_truncation/json_to_csv.py
 ```
+After truncation, we then split our data into training and test sets.
+```python
+python src/note_truncation/split_notes.py
+```
 
 ## Question Curation
-We then curated questions using our ground-truth calculator evidence, truncated notes, and answer options. Question-answer pairs contained the relevant truncated note and five options, including "E. None of the above". Thus, about 1/5 of all generated questions have "E. None of the above" as the correct answer. The process of question curation can be accomplished with the following script"
+We manually reviewed over 1,000 question-answer instances from our test set. When reviewing instances, we ensured that notes were properly truncated relative to calculator name, sentence evidence, and original text.
+
+We then automatically curated questions using our ground-truth calculator evidence, truncated notes, and answer options. Question-answer pairs contained the relevant truncated note and five options, including "E. None of the above". Thus, about 1/5 of all generated questions have "E. None of the above" as the correct answer. The process of question curation can be accomplished with the following script"
 ```python
 python src/question_curation/question_generation.py
 ```
