@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 # Load the CSV file into a pandas dataframe
-file_path = 'data/medcalcqa/raw_calc_notes.csv'
+file_path = 'data/medcalcqa/trunc_calc_notes.csv'
 df = pd.read_csv(file_path)
 
 # Function to sample N instances for each unique calculator_code
@@ -27,7 +27,7 @@ print(instance_counts)
 print(f"Sum of all instances when N={N}: {instance_counts.sum()}")
 
 # Save the sampled dataframe to a new CSV file
-sampled_df.to_csv('data/medcalcqa/raw_notes_test.csv', index=False)
+sampled_df.to_csv('data/medcalcqa/test_notes.csv', index=False)
 
 # Save the training dataframe to a new CSV file
-training_df.to_csv('data/medcalcqa/raw_notes_training.csv', index=False)
+training_df.to_csv('data/medcalcqa/train_notes.csv', index=False)
