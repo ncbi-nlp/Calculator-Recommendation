@@ -61,7 +61,7 @@ We then automatically curated questions using our ground-truth calculator eviden
 python src/question_curation/question_generation.py
 ```
 
-## Question evaluation
+## Question Evaluation
 We then evaluated the ability of 8 LLMs to choose answer choices and recommend calculators using the curated questions. Here, we have provided an example script for generating answers using OpenAI models:
 ```python
 python src/question_evaluation/generate_answers.py medcalcqa gpt-4o
