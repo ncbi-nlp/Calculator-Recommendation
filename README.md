@@ -1,10 +1,10 @@
 # Calculator-Recommendation
 
 ## Introduction
-MedCalcQA is a medical calculator dataset used to benchmark LLMs ability to recommend clinical calculators. Each instance in the dataset consists of a truncated patient note, a question asking to recommend a specific clinical calculator, answer options (including "None of the above"), and a final answer value. Our dataset covers 35 different calculators. This dataset contains a training dataset of about 5,000 instances and a testing dataset of 1,007 instances.
+MedQA-Calc is a medical calculator dataset used to benchmark LLMs ability to recommend clinical calculators. Each instance in the dataset consists of a truncated patient note, a question asking to recommend a specific clinical calculator, answer options (including "None of the above"), and a final answer value. Our dataset covers 35 different calculators. This dataset contains a training dataset of about 5,000 instances and a testing dataset of 1,007 instances.
 
 ## Configuration
-To create one's own version of MedCalcQA, one must first set up the OpenAI API either directly through OpenAI or through Microsoft Azure. Here we use Microsoft Azure because it is compliant with Health Insurance Portability and Accountability Act (HIPAA). Ensure that an appropriate PROJECT_HOME path has been set, and please set the enviroment variables accordingly:
+To create one's own version of MedQA-Calc, one must first set up the OpenAI API either directly through OpenAI or through Microsoft Azure. Here we use Microsoft Azure because it is compliant with Health Insurance Portability and Accountability Act (HIPAA). Ensure that an appropriate PROJECT_HOME path has been set, and please set the enviroment variables accordingly:
 ```python
 export OPENAI_ENDPOINT=YOUR_AZURE_OPENAI_ENDPOINT_URL
 export OPENAI_API_KEY=YOUR_AZURE_OPENAI_API_KEY
@@ -28,7 +28,7 @@ df = dataset.to_pandas()
 ```
 
 ## Calculator Note Extraction
-The first step in curating MedCalcQA is extracting evidence of calculator usage in the PMC-Patients dataset. We used GPT-4o and a list of 35 calculators that can be found on MDCalc.com to extract calculator use instances given relevant examples. When using this extraction script, ensure that file paths are correct such that PMC-Patients (previously loaded) and the "med_calc_table.csv" (found in Calculator-Recommendation/src/note_extraction) are properly loaded. We also performed additional mergine and post-processing after extraction.
+The first step in curating MedQA-Calc is extracting evidence of calculator usage in the PMC-Patients dataset. We used GPT-4o and a list of 35 calculators that can be found on MDCalc.com to extract calculator use instances given relevant examples. When using this extraction script, ensure that file paths are correct such that PMC-Patients (previously loaded) and the "med_calc_table.csv" (found in Calculator-Recommendation/src/note_extraction) are properly loaded. We also performed additional mergine and post-processing after extraction.
 ```python
 python src/note_extraction/med_calc_prompt_gpt4o.py
 python src/note_extraction/merge_patient_to_calculator.py
